@@ -4,14 +4,14 @@ import { withRouter, Route, Switch } from 'react-router-dom'
 import { Layout } from 'antd'
 import SideBarContainer from 'app/sidebar'
 
-const HomeContainer = React.lazy(() => import('app/home')) 
-const SalesContainer = React.lazy(() => import('app/sales')) 
-const PurchaseContainer = React.lazy(() => import('app/purchase')) 
-const ProductContainer = React.lazy(() => import('app/product')) 
-const InventoryContainer = React.lazy(() => import('app/inventory')) 
+const HomeContainer = React.lazy(() => import('app/home'))
+const SalesContainer = React.lazy(() => import('app/sales'))
+const PurchaseContainer = React.lazy(() => import('app/purchase'))
+const ProductContainer = React.lazy(() => import('app/product'))
+const InventoryContainer = React.lazy(() => import('app/inventory'))
+const SampleList = React.lazy(() => import('app/sample'))
 
-
-const { Content } = Layout 
+const { Content } = Layout
 
 const ModuleContainer = () => {
   return (
@@ -27,6 +27,7 @@ const ModuleContainer = () => {
                 <Route path='/purchase' component={PurchaseContainer} />
                 <Route path='/product' component={ProductContainer} />
                 <Route path='/inventory' component={InventoryContainer} />
+                <Route path='/sample' component={SampleList} />
               </Switch>
             </Suspense>
           </div>

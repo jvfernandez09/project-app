@@ -23,7 +23,7 @@ class HomeContainer extends Component {
   }
 
   addItem = () => {
-    const todos = this.state.todos
+    let todos = this.state.todos
     let value = this.state.value
     if(!value) return
     const item = {
@@ -31,9 +31,11 @@ class HomeContainer extends Component {
       value
     }
 
+    todos.push(item)
+
     this.setState({
       value: '',
-      todos: [...todos, item]
+      todos: todos
     })
   }
 
@@ -53,6 +55,7 @@ class HomeContainer extends Component {
         <Input
           type="text"
           name="todo"
+          defaultValue={this.state.value}
           value={this.state.value}
           onChange={this.handleChange}
           style={{ width: '80%'}}
