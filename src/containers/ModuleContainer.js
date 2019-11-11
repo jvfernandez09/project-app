@@ -1,38 +1,39 @@
 import React, { Suspense }  from 'react'
 import { withRouter, Route, Switch } from 'react-router-dom'
 
-import { Layout } from 'antd'
+import { Layout, Menu, Breadcrumb } from 'antd';
 import SideBarContainer from 'app/sidebar'
+import './ModuleContainer.scss'
 
 const HomeContainer = React.lazy(() => import('app/home'))
 const SalesContainer = React.lazy(() => import('app/sales'))
 const PurchaseContainer = React.lazy(() => import('app/purchase'))
-const ProductContainer = React.lazy(() => import('app/product'))
+const ProductContainer = React.lazy(() => import('app/products'))
 const InventoryContainer = React.lazy(() => import('app/inventory'))
 const SampleList = React.lazy(() => import('app/sample'))
 
-const { Content } = Layout
+const { Header, Content, Footer } = Layout;
 
 const ModuleContainer = () => {
   return (
-    <Layout>
-      <SideBarContainer />
-      <Layout style={{ marginLeft: 200 }}>
-        <Content style={{ margin: '24px 16px 0'}}>
-          <div style={{ padding: 24, background: '#fff', minHeight: 800, marginTop: 0, marginBottom: 20 }}>
-            <Suspense fallback={<div> loading... </div>}>
-              <Switch>
-                <Route path='/home' component={HomeContainer} />
-                <Route path='/sales' component={SalesContainer} />
-                <Route path='/purchase' component={PurchaseContainer} />
-                <Route path='/product' component={ProductContainer} />
-                <Route path='/inventory' component={InventoryContainer} />
-                <Route path='/sample' component={SampleList} />
-              </Switch>
-            </Suspense>
-          </div>
-        </Content>
-      </Layout>
+    <Layout className="layout">
+      <Header>
+        <SideBarContainer />
+      </Header>
+      <Content style={{ margin: '24px 16px 0'}}>
+        <div style={{ padding: 60, background: '#fff', minHeight: 800, marginTop: 0, marginBottom: 20 }}>
+          <Suspense fallback={<div> loading... </div>}>
+            <Switch>
+              <Route path='/home' component={HomeContainer} />
+              <Route path='/sales' component={SalesContainer} />
+              <Route path='/purchase' component={PurchaseContainer} />
+              <Route path='/products' component={ProductContainer} />
+              <Route path='/inventory' component={InventoryContainer} />
+              <Route path='/sample' component={SampleList} />
+            </Switch>
+          </Suspense>
+        </div>
+      </Content>
     </Layout>
   )
 }
