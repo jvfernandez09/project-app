@@ -1,91 +1,109 @@
-import React, { Component } from 'react'
-import { Button , Input } from 'antd'
+import React, { useState } from 'react'
+import {
+  Card,
+  Col,
+  Row,
+  Icon,
+  Button,
+  Input,
+  Tooltip
+} from 'antd'
 
+const { Search, Password } = Input
 
-class HomeContainer extends Component {
-  constructor(props) {
-    super(props)
-      this.state = {
-      home: '',
-      todos: [],
-      value: ''
-    }
+const HomeContainer = () => {
+  const [value, setValue] = useState({})
+  const [search, setSearch] = useState()
+  function handleChange(event){
+    event.persist()
+    setValue(value => ({ ...value, [event.target.name]: event.target.value }))
   }
 
-  componentDidMount(){
-    this.setState({ home: "Welcome to React" })
-  }
+  return (
+    <div>
+      <h1> Samples from Antd </h1>
+      <div style={{ bordered: '1'}}>
+        <Row gutter={16}>
+          <Col span={8}>
+            <Card title="Basic Usage Input">
+              <Input
+                name="name"
+                onChange={handleChange}
+                style={{ marginBottom: '20px' }}
+              />
+              Output: {value.name}
 
-  handleChange = e => {
-    const txt = e.target.value
-    if(!txt) return
-    this.setState({ value: txt })
-  }
+              <Password
+                name="password"
+                onChange={handleChange}
+                style={{ marginBottom: '20px' }}
+              />
+            </Card>
+          </Col>
+          <Col span={8}>
+            <Card title="Search Input">
+              <Search
+                placeholder="input search text"
+                enterButton="Search"
+                name="search"
+                onSearch={value => setSearch(value)}
+                style={{ marginBottom: '20px'}}
+              />
+              Output: {search}
+              <Search
+                placeholder="input search text"
+                onSearch={value => console.log(value)}
+                enterButton
+              />
+            </Card>
+          </Col>
+          <Col span={8}>
+            <Card title="Prefix and Suffix">
+              <Input
+                name="prefix"
+                placeholder="Enter your username"
+                onChange={handleChange}
+                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                suffix={
+                  <Tooltip title="Extra information">
+                    <Icon type="info-circle" style={{ color: 'rgba(0,0,0,.45)' }} />
+                  </Tooltip>
+                }
+                style={{ marginBottom: '20px'}}
+              />
 
-  addItem = () => {
-    let todos = this.state.todos
-    let value = this.state.value
-    if(!value) return
-    const item = {
-      id: new Date().toString(),
-      value
-    }
+              Output: {value.prefix}
 
-    todos.push(item)
+              <Input
+                name="suffix"
+                prefix="￥"
+                suffix="RMB"
+                style={{ marginBottom: '20px'}}
+                onChange={handleChange}
+              />
 
-    this.setState({
-      value: '',
-      todos: todos
-    })
-  }
+            </Card>
+          </Col>
+        </Row>
+        <Row gutter={16}>
+          <Col span={8}>
+            <Card>
 
-  removeItem = id => {
-    let arrayTodos = this.state.todos
-    arrayTodos = arrayTodos.filter(td => id !== td.id)
-    this.setState({
-      value: '',
-      todos: arrayTodos
-    })
-  }
+            </Card>
+          </Col>
+          <Col span={8}>
+            <Card>
+            </Card>
+          </Col>
+          <Col span={8}>
+            <Card>
 
-  render (){
-    return (
-      <div className="App" style={{ padding: "20px 30px" }}>
-        <h3>{this.state.home}</h3>
-        <Input
-          type="text"
-          name="todo"
-          defaultValue={this.state.value}
-          value={this.state.value}
-          onChange={this.handleChange}
-          style={{ width: '80%'}}
-        />
-        <Button
-          className="btn btn-primary"
-          onClick={this.addItem}
-        >
-          Add
-        </Button>
-        <br />
-        <ul className="list-group mt-3 mx-5">
-          {this.state.todos.map(td => (
-            <li
-              key={td.id}
-              className="list-group-item d-flex justify-content-between align-items-center"
-            >
-              {td.value}
-              <Button
-                className="btn btn-danger ml-3 pull-right"
-                onClick={() => this.removeItem(td.id)}
-              >
-                Done
-              </Button>
-            </li>
-          ))}
-        </ul>
+            </Card>
+          </Col>
+        </Row>
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 

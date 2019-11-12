@@ -42,9 +42,8 @@ const SideBarContainer = ({ history }) => {
           <Icon type="user" />
           <span className="nav-text">Sales</span>
         </Menu.Item>
-        <Menu.Item key="6">
-          <span className="nav-text"> | <Icon type="shopping-cart" /> 0 Item 0.00 PHP</span>
-        </Menu.Item>
+          <span className="nav-text"> |
+          <Icon type="shopping-cart" onClick={() => alert("add to cart!")}/> 0 Item 0.00 PHP</span>
       </Menu>
     </div>
   )
