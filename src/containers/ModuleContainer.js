@@ -1,7 +1,7 @@
 import React, { Suspense }  from 'react'
 import { withRouter, Route, Switch } from 'react-router-dom'
 
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Layout } from 'antd';
 import SideBarContainer from 'app/sidebar'
 import './ModuleContainer.scss'
 
@@ -12,7 +12,7 @@ const ProductContainer = React.lazy(() => import('app/products'))
 const InventoryContainer = React.lazy(() => import('app/inventory'))
 const SampleList = React.lazy(() => import('app/sample'))
 
-const { Header, Content, Footer } = Layout;
+const { Header, Content } = Layout;
 
 const ModuleContainer = () => {
   return (

@@ -1,23 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 
-import { Layout, Menu, Icon } from 'antd'
+import { Menu, Icon } from 'antd'
 import './index.scss'
-const { Sider } = Layout
-const { SubMenu } = Menu
 
 const SideBarContainer = ({ history }) => {
   const linkTo = route => history.push(route)
-  const [collapse, isCollapse] = useState(false)
+
   useEffect(() => {
     if (history.location.pathname === '/') {
        history.push('/home')
     }
   })
-
-  function toggle(){
-    isCollapse(!collapse)
-  }
 
   return(
     <div className='sidebar-container'>
